@@ -1,6 +1,5 @@
 {
     "name": "@app/finder",
-    "private": false,
     "version": "1.2.9",
     "scripts": {
         "check": "FORCE_COLOR=1 tsc --noEmit --declaration false --emitDeclarationOnly false",

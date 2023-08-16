@@ -1,6 +1,5 @@
 {
     "name": "@klaytn/monorepo",
-    "private": "false",
     "description": "",
     "workspaces": [
         "apps/*",
