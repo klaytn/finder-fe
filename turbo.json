@@ -1,0 +1,35 @@
+{
+    "$schema": "https://turborepo.org/schema.json",
+    "pipeline": {
+        "build": {
+            "outputs": [".next/**", "dist/**", "build/**", "storybook-static/**"],
+            "cache": false
+        },
+        "build:storybook": {},
+        "test": {
+            "outputs": []
+        },
+        "lint": {
+            "outputs": []
+        },
+        "lint:fix": {
+            "outputs": []
+        },
+        "watch": {
+            "cache": false
+        },
+        "@app/finder#watch": {
+            "dependsOn": ["@klaytn/slush#build"]
+        },
+        "watch:storybook": {
+            "cache": false
+        },
+        "check": {
+            "outputs": []
+        },
+        "@app/finder#build": {
+            "dependsOn": ["@klaytn/slush#build"],
+            "cache": false
+        }
+    }
+}

@@ -1,0 +1,7 @@
+export const NULL_ADDRESS = '0x0000000000000000000000000000000000000000'
+
+export const DEAD_ADDRESS = '0x000000000000000000000000000000000000dead'
+
+export const GHOST_ADDRESS_LIST = [NULL_ADDRESS, DEAD_ADDRESS]
+
+export const isGhostAddress = (address: string) => GHOST_ADDRESS_LIST.includes(address)

@@ -1,0 +1,51 @@
+.card {
+    padding: 24px 36px 24px 36px;
+    background: #312e38;
+    border-radius: 30px;
+}
+
+.card_title {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.0075em;
+    color: #cdccff;
+}
+
+.event_name {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.0075em;
+    color: #eb4c4c;
+}
+
+.event_unknown {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.0075em;
+    color: #bdb9c6;
+}
+
+.event {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.0075em;
+    color: #bdb9c6;
+}
+
+.event_param {
+    font-weight: bold;
+}
+
+.event_value {
+    width: 1020px;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: IBM Plex Mono;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+}

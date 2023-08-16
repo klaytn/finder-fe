@@ -1,0 +1,45 @@
+name: finder-ci
+on:
+    pull_request:
+        paths:
+            - 'apps/finder/**/*'
+jobs:
+    ci:
+        # runs-on: [self-hosted, linux]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout source code
+              uses: actions/checkout@v2
+
+            - name: Set NodeJS version
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  registry-url: https://npm.pkg.github.com/
+
+            - name: Cache npm dependencies
+              uses: actions/cache@v1
+              id: npm-cache
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: build packages
+              run: npm run build:packages
+
+            - name: Lint
+              run: npm run lint
+              working-directory: ./apps/finder
+
+            - name: Check types
+              run: npm run check
+              working-directory: ./apps/finder
+
+            - name: Test
+              run: npm run test
+              working-directory: ./apps/finder

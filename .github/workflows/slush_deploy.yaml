@@ -1,0 +1,45 @@
+name: slush-deploy
+on:
+    push:
+        branches: [main]
+        paths:
+            - 'packages/slush/**/*'
+            - '.github/workflows/slush_deploy.yaml'
+    workflow_dispatch:
+concurrency:
+    group: slush-deploy
+    cancel-in-progress: true
+jobs:
+    deploy:
+        # runs-on: [self-hosted, linux]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout source code
+              uses: actions/checkout@v2
+
+            - name: Set NodeJS version
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  registry-url: https://npm.pkg.github.com/
+
+            - name: Cache npm dependencies
+              uses: actions/cache@v1
+              id: npm-cache
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-modules-
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build
+              run: npm run build:slush
+
+            - name: Deploy
+              run: npm publish
+              working-directory: ./packages/slush
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,16 @@
+.container {
+    background-color: #2A146B;
+    color: #e6e5ff;
+    border-radius: 7px;
+    padding: 0 8px 0 8px;
+    line-height: 14px;
+    letter-spacing: -0.0075em;
+    font-size: 16px;
+    line-height: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-style: normal;
+    font-weight: normal;
+    padding: 3px 10px 3px 10px;
+    text-align: center;
+    text-overflow: ellipsis;
+}

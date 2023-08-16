@@ -1,0 +1,6 @@
+src/
+scripts/
+.storybook/
+.turbo/
+storybook-static/
+.eslintignore

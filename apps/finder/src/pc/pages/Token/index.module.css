@@ -1,0 +1,21 @@
+.title {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 44px;
+    letter-spacing: -0.0075em;
+    color: #ffffff;
+}
+
+.image {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+
+.unknown {
+    width: 36px;
+    height: 36px;
+    background-color: #d8d8d8;
+    border-radius: 50%;
+}

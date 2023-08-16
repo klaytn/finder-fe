@@ -1,0 +1,14 @@
+*.log
+*.local
+node_modules/
+dist/
+build
+.next/
+temp/
+.DS_Store
+**/.DS_Store
+coverage/
+.*.env
+storybook-static/
+.env
+.env-dev

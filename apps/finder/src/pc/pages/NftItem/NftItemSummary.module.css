@@ -1,0 +1,9 @@
+.flex_center {
+    align-items: center;
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

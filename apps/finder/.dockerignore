@@ -1,0 +1,5 @@
+.env
+.env.*
+k8s/
+.turbo/
+node_modules/

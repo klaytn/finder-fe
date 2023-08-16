@@ -1,0 +1,18 @@
+FROM amd64/nginx:stable
+USER root
+
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+ENV TZ Asia/Seoul
+
+ENV APP_NAME finder
+ENV APP_HOME /klayon/web/$APP_NAME
+
+RUN mkdir -p $APP_HOME
+
+WORKDIR $APP_HOME
+
+COPY ./scripts/nginx/nginx.conf /etc/nginx/conf.d/sokuri-scope-web.conf
+
+STOPSIGNAL SIGQUIT
+
+CMD ["nginx", "-g", "daemon off;"]
