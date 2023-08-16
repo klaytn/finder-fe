@@ -18,6 +18,6 @@ KlaytnFinder UI library.
 
 ## Links
 
--   Packages - https://github.com/klaytn/fe-monorepo/packages/1281962
--   Storybook - https://klaytn.github.io/fe-monorepo/
+-   Packages - https://github.com/klaytn/finder-fe/packages/1281962
+-   Storybook - https://klaytn.github.io/finder-fe/
 ````

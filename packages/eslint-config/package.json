@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/klaytn/fe-monorepo.git"
+        "url": "git+https://github.com/klaytn/finder-fe.git"
     },
     "keywords": [
         "eslint",
@@ -20,9 +20,9 @@
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/klaytn/fe-monorepo/issues"
+        "url": "https://github.com/klaytn/finder-fe/issues"
     },
-    "homepage": "https://github.com/klaytn/fe-monorepo/packages/eslint-config#readme",
+    "homepage": "https://github.com/klaytn/finder-fe/packages/eslint-config#readme",
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/"
     },

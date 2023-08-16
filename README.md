@@ -17,7 +17,7 @@ For the overall architecture of the finder, please refer to the [Main Repo](http
 
 > Packages (libraries) to be used elsewhere
 
--   [slush](https://klaytn.github.io/fe-monorepo) - UI components
+-   [slush](https://klaytn.github.io/finder-fe) - UI components
 
 ---
 
