@@ -1,7 +1,7 @@
 # Klaytn Finder Frontend
 
 This repository is the Frontend of the Klaytn Finder.
-For the overall architecture of the finder, please refer to the [Main Repo](https://github.com/klaytn/finder-infra/blob/main/README.md).
+For the overall architecture of the finder, please refer to the [Main Repo](https://github.com/klaytn/finder/blob/main/README.md).
 
 ---
 
