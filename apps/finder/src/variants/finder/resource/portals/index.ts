@@ -6,7 +6,6 @@ import KlaytnSquarePortalIcon from './klaytnSquarePortalIcon'
 import KnsPortalIcon from './knsPortalIcon'
 import OpenSeaPortalIcon from './openseaPortalicon'
 import OrbitBridgePortalIcon from './OrbitBridgePortalIcon'
-import ProversPortalIcon from './proversPortalIcon'
 import SwapScannerPortalIcon from './swapScannerPortalIcon'
 
 export const portals: Portal[] = [
@@ -26,12 +25,6 @@ export const portals: Portal[] = [
         icon: FantoPortalIcon,
         link: 'https://www.fanto.io/',
     },
-    {
-        name: 'Provers',
-        icon: ProversPortalIcon,
-        link: 'https://provers.io/',
-    },
-
     {
         name: 'Orbit Bridge',
         icon: OrbitBridgePortalIcon,
