@@ -186,7 +186,7 @@ export const getEnvConfig = () => {
         accessKey: process.env.REACT_APP_ACCESS_KEY || '',
         secretKey: process.env.REACT_APP_SECRET_KEY || '',
         gitHash,
-        gaId: process.env.REACT_APP_GA_ID || '',
+        gaId: process.env.REACT_APP_GA_ID || '',// Google Analytics ID
         rumConfig: {
             applicationId: process.env.REACT_APP_RUM_APPLICAION_ID || '',
             clientToken: process.env.REACT_APP_RUM_CLIENT_TOKEN || '',
