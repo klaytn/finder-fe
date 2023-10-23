@@ -231,5 +231,6 @@ export const getConfig = memoize(async function (): Promise<Config> {
     return {
         ...fileConfig,
         ...envConfig,
+        ...fileConfig.rumConfig,
     }
 }, singletonResolver)
