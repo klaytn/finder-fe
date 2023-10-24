@@ -97,7 +97,7 @@ async function main() {
 
         const route = getRouteFromPath(location.pathname)
         const tab = new URLSearchParams(location.search).get('tabId')
-        const pageTitle = tab ? `${route}-${tab}` : route
+        const pageTitle = tab ? `${network}-${route}-${tab}` : `${network}-${route}`
         ReactGA.set({
             page_title: pageTitle,
         })
