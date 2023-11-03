@@ -11,7 +11,7 @@ import { useResources } from '../../../context/configProvider'
 import { getThemeColor } from '../../../functions/colorMap'
 
 const Footer = () => {
-    const { LogoComponent, contacts, keyCurrency, contactLink } = useResources()
+    const { FooterLogoComponent, contacts, keyCurrency, contactLink } = useResources()
 
     const handleContactUs = useCallback(() => {
         if (!contactLink) {
@@ -26,7 +26,7 @@ const Footer = () => {
             <LogoContainer>
                 <LogoRow direction="row" justifyContent="space-between">
                     <LogoLink to={ROUTES.HOME}>
-                        <LogoComponent width={186} height={28} />
+                        <FooterLogoComponent width={186} height={45} />
                     </LogoLink>
                 </LogoRow>
 
