@@ -12,7 +12,7 @@ import ContactItem from './commons/contactItem'
 import ToggleFinderTheme from './commons/toogleFinderTheme'
 
 const Footer = () => {
-    const { LogoComponent, contacts, keyCurrency, contactLink } = useResources()
+    const { FooterLogoComponent, contacts, keyCurrency, contactLink } = useResources()
 
     const handleContactUs = useCallback(() => {
         if (!contactLink) {
@@ -27,7 +27,7 @@ const Footer = () => {
             <LeftContainer>
                 <LogoContainer>
                     <LogoLink to={ROUTES.HOME}>
-                        <LogoComponent width={186} height={28} opacity={0.5} />
+                        <FooterLogoComponent width={186} height={45} opacity={0.5} />
                     </LogoLink>
                     <div>
                         <ToggleFinderTheme />

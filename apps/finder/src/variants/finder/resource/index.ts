@@ -2,7 +2,7 @@ import { GetResource } from '../../resource'
 import { contacts } from './contacts'
 import { genesisBlock } from './genesisBlock'
 import { keyCurrency } from './keyCurrency'
-import { Logo } from './logo'
+import { FooterLogo, Logo } from './logo'
 import { portals } from './portals'
 
 export const getResources: GetResource = async () => {
@@ -11,6 +11,7 @@ export const getResources: GetResource = async () => {
         contacts,
         keyCurrency,
         genesisBlock,
+        FooterLogoComponent: FooterLogo,
         LogoComponent: Logo,
     }
 }

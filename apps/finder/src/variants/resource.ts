@@ -59,6 +59,7 @@ export type Resources = {
     keyCurrency: KeyCurrency
     genesisBlock: GenesisBlock
     LogoComponent: (props: LogoProps) => JSX.Element
+    FooterLogoComponent: (props: LogoProps) => JSX.Element
     contactLink?: string
 }
 
