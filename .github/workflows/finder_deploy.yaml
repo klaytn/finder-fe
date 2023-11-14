@@ -121,14 +121,13 @@ jobs:
               run: ts-node ./scripts/createConfig.ts "./build"
               working-directory: ./apps/finder
 
-            - id: 'auth'
-              uses: 'google-github-actions/auth@v1'
+            - name: auth
+              uses: google-github-actions/auth@v1
               with:
                   workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
                   service_account: ${{ env.GCP_SERVICE_ACCOUNT }}
             - name: Upload to GCS
               uses: 'google-github-actions/upload-cloud-storage@v1'
               with:
-                  path: './build'
+                  path: './apps/finder/build'
                   destination: '${{ env.GCS_BUCKET }}/${{ matrix.network }}'
-                  working-directory: ./apps/finder
