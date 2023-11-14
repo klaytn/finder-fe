@@ -130,4 +130,5 @@ jobs:
               uses: 'google-github-actions/upload-cloud-storage@v1'
               with:
                   path: './apps/finder/build'
+                  glob: '**'
                   destination: '${{ env.GCS_BUCKET }}/${{ matrix.network }}'
