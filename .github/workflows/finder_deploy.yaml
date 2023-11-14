@@ -83,20 +83,20 @@ jobs:
               run: |
                   echo "WORKLOAD_IDENTITY_PROVIDER=${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}" >> $GITHUB_ENV
                   echo "GCP_SERVICE_ACCOUNT=${{ secrets.GCP_SERVICE_ACCOUNT }}" >> $GITHUB_ENV
-                  echo "GCS_BUCKET=klaytn-dev-finder-public/web" >> $GITHUB_ENV
+                  echo "GCS_BUCKET=klaytn-dev-finder" >> $GITHUB_ENV
 
             - name: ENV setting for stage
               if: ${{ inputs.target == 'stage' }}
               run: |
                   echo "WORKLOAD_IDENTITY_PROVIDER=${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}" >> $GITHUB_ENV
                   echo "GCP_SERVICE_ACCOUNT=${{ secrets.GCP_SERVICE_ACCOUNT }}" >> $GITHUB_ENV
-                  echo "GCS_BUCKET=klaytn-prod-finder-public/web-stage" >> $GITHUB_ENV
+                  echo "GCS_BUCKET=klaytn-stag-finder" >> $GITHUB_ENV
             - name: ENV setting for prod
               if: ${{ inputs.target == 'prod' }}
               run: |
                   echo "WORKLOAD_IDENTITY_PROVIDER=${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}" >> $GITHUB_ENV
                   echo "GCP_SERVICE_ACCOUNT=${{ secrets.GCP_SERVICE_ACCOUNT }}" >> $GITHUB_ENV
-                  echo "GCS_BUCKET=klaytn-prod-finder-public/web" >> $GITHUB_ENV
+                  echo "GCS_BUCKET=klaytn-prod-finder" >> $GITHUB_ENV
             - name: Cache build result
               uses: actions/cache@v3
               env:
@@ -131,5 +131,5 @@ jobs:
               with:
                   path: './apps/finder/build'
                   glob: '**'
-                  destination: '${{ env.GCS_BUCKET }}/${{ matrix.network }}'
+                  destination: '${{ env.GCS_BUCKET }}-${{ matrix.network }}'
                   parent: false
