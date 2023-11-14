@@ -78,34 +78,22 @@ jobs:
             - name: ENV setting for dev
               if: ${{ inputs.target == 'dev' }}
               run: |
-                  echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-                  echo "AWS_SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-                  echo "AWS_S3_BUCKET_HOST=s3://klaytn-dev-finder-public/web" >> $GITHUB_ENV
-                  echo "S3_SYNC_OPTION=--delete" >> $GITHUB_ENV
+                  echo "WORKLOAD_IDENTITY_PROVIDER=${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}" >> $GITHUB_ENV
+                  echo "GCP_SERVICE_ACCOUNT=${{ secrets.GCP_SERVICE_ACCOUNT }}" >> $GITHUB_ENV
+                  echo "GCS_BUCKET=klaytn-dev-finder-public/web" >> $GITHUB_ENV
 
             - name: ENV setting for stage
               if: ${{ inputs.target == 'stage' }}
               run: |
-                  echo "AWS_ACCESS_KEY=${{ secrets.PROD_AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-                  echo "AWS_SECRET_KEY=${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-                  echo "AWS_S3_BUCKET_HOST=s3://klaytn-prod-finder-public/web-stage" >> $GITHUB_ENV
-                  echo "S3_SYNC_OPTION=--delete" >> $GITHUB_ENV
-
+                  echo "WORKLOAD_IDENTITY_PROVIDER=${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}" >> $GITHUB_ENV
+                  echo "GCP_SERVICE_ACCOUNT=${{ secrets.GCP_SERVICE_ACCOUNT }}" >> $GITHUB_ENV
+                  echo "GCS_BUCKET=klaytn-prod-finder-public/web-stage" >> $GITHUB_ENV
             - name: ENV setting for prod
               if: ${{ inputs.target == 'prod' }}
               run: |
-                  echo "AWS_ACCESS_KEY=${{ secrets.PROD_AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-                  echo "AWS_SECRET_KEY=${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-                  echo "AWS_S3_BUCKET_HOST=s3://klaytn-prod-finder-public/web" >> $GITHUB_ENV
-                  echo "S3_SYNC_OPTION=" >> $GITHUB_ENV
-
-            - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v1
-              with:
-                  aws-access-key-id: ${{ env.AWS_ACCESS_KEY }}
-                  aws-secret-access-key: ${{ env.AWS_SECRET_KEY }}
-                  aws-region: ap-northeast-2
-
+                  echo "WORKLOAD_IDENTITY_PROVIDER=${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}" >> $GITHUB_ENV
+                  echo "GCP_SERVICE_ACCOUNT=${{ secrets.GCP_SERVICE_ACCOUNT }}" >> $GITHUB_ENV
+                  echo "GCS_BUCKET=klaytn-prod-finder-public/web" >> $GITHUB_ENV
             - name: Cache build result
               uses: actions/cache@v3
               env:
@@ -130,24 +118,19 @@ jobs:
               run: ts-node ./scripts/createConfig.ts "./build"
               working-directory: ./apps/finder
 
-            - name: Upload to S3
-              run: aws s3 sync ./build ${{ env.AWS_S3_BUCKET_HOST }}/${{ matrix.network }} ${{ env.S3_SYNC_OPTION }}
-              working-directory: ./apps/finder
-
-    invalidate-for-prod:
-        # runs-on: [self-hosted, linux]
-        runs-on: ubuntu-latest
-        needs: [deploy]
-        if: ${{ inputs.target == 'prod' }}
-        steps:
-            - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v1
+            - id: 'auth'
+              uses: 'google-github-actions/auth@v1'
               with:
-                  aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
-                  aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ap-northeast-2
-
-            - name: Invalidation CDN cache
+                  workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+                  service_account: ${{ env.GCP_SERVICE_ACCOUNT }}
+            - name: Upload to GCS
+              uses: 'google-github-actions/upload-cloud-storage@v1'
+              with:
+                  run: |
+                      echo "Uploading to GCS"
+                  working-directory: ./apps/finder/build
+                  path: './build'
+                  destination: '${{ env.GCS_BUCKET }}/${{ matrix.network }}'
               run: |
-                  aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_FINDER_DISTRIBUTION_ID_CYPRESS_PROD }} --paths "/index.html"
-                  aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_FINDER_DISTRIBUTION_ID_BAOBAB_PROD }} --paths "/index.html"
+                  echo "Uploading to GCS..."
+              working-directory: ./apps/finder
