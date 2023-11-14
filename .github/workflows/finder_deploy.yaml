@@ -1,8 +1,5 @@
 name: finder-deploy
 on:
-    push:
-        branches:
-            - gcp
     workflow_dispatch:
         inputs:
             target:
@@ -132,6 +129,7 @@ jobs:
             - name: Upload to GCS
               uses: 'google-github-actions/upload-cloud-storage@v1'
               with:
-                  path: './apps/finder/build/'
-                  glob: '**/*'
+                  path: './apps/finder/build'
+                  glob: '**'
                   destination: '${{ env.GCS_BUCKET }}/${{ matrix.network }}'
+                  parent: false
