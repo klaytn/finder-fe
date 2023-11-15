@@ -136,5 +136,4 @@ jobs:
             - name: Invalidation CDN cache
               if: ${{ inputs.target == 'prod' }}
               run: |
-                  gcloud compute url-maps invalidate-cdn-cache finder-prod-cypress --path "/*" --async
-                  gcloud compute url-maps invalidate-cdn-cache finder-prod-baobab --path "/*" --async
+                  gcloud compute url-maps invalidate-cdn-cache finder-prod-${{ matrix.network }} --path "/*" --async
