@@ -46,7 +46,6 @@ jobs:
               if: ${{ inputs.target == 'prod' }}
               run: |
                   echo "GENERATE_SOURCEMAP=false" >> $GITHUB_ENV
-
             - name: Build
               env:
                   REACT_APP_GIT_HASH: ${{ github.sha }}
@@ -120,7 +119,6 @@ jobs:
                   REACT_APP_RUM_CLIENT_TOKEN: ${{ secrets.REACT_APP_RUM_CLIENT_TOKEN }}
               run: ts-node ./scripts/createConfig.ts "./build"
               working-directory: ./apps/finder
-
             - name: auth
               uses: google-github-actions/auth@v1
               with:
@@ -133,3 +131,20 @@ jobs:
                   glob: '**'
                   destination: '${{ env.GCS_BUCKET }}-${{ matrix.network }}'
                   parent: false
+    invalidate-for-prod:
+        # runs-on: [self-hosted, linux]
+        runs-on: ubuntu-latest
+        needs: [deploy]
+        if: ${{ inputs.target == 'prod' }}
+        steps:
+            - name: auth
+              uses: google-github-actions/auth@v1
+              with:
+                  workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+                  service_account: ${{ env.GCP_SERVICE_ACCOUNT }}
+            - name: 'Set up Cloud SDK'
+              uses: 'google-github-actions/setup-gcloud@v1'
+            - name: Invalidation CDN cache
+              run: |
+                  gcloud compute url-maps invalidate-cdn-cache finder-prod-cypress --path "/*" --async
+                  gcloud compute url-maps invalidate-cdn-cache finder-prod-baobab --path "/*" --async
