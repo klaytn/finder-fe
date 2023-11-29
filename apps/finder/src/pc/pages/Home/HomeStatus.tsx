@@ -377,6 +377,7 @@ const TotalBurntDetails = () => {
 
             <BurntInfoRow title="by Gas Fee" keyProp="accumulate_burnt_fees" />
             <BurntInfoRow title="by Burning" keyProp="accumulate_burnt_klay" />
+            <BurntInfoRow title="by KIP103" keyProp="kip103_burnt" />
         </TotalBurntDetailsContainer>
     )
 }

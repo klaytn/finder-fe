@@ -43,7 +43,7 @@ const Container = styled(Flex)``
 const BurntInfo = () => {
     const { keyCurrency } = useResources()
     const {
-        block_burnt: { accumulate_burnt_fees, accumulate_burnt_klay },
+        block_burnt: { accumulate_burnt_fees, accumulate_burnt_klay, kip103_burnt },
     } = useRecoilValue(finderStatusState)
     const { histories } = useBurntByGasFeeHistory()
 
