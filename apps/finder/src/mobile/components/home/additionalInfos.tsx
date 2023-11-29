@@ -76,6 +76,16 @@ const BurntInfo = () => {
                     </>
                 }
             />
+            <HomeInfoRow
+                title="by KIP-103"
+                text={
+                    <>
+                        <EllipsisNumber value={klay(kip103_burnt, undefined, 3)} noEllipsis />
+                        <UnitText>{keyCurrency.unit}</UnitText>
+                    </>
+                }
+                marginBottom={0}
+            />
         </>
     )
 }
