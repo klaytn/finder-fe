@@ -178,7 +178,7 @@ const HomeChainStatus = () => {
     return (
         <div className="flex_space_between">
             <div>
-                <HomeStatusTitle icon={FaceSmileyIcon} title="Chain Status" />
+                <HomeStatusTitle icon={FaceSmileyIcon} title="Finder Status" />
             </div>
             <ChainStatusDetailContainer>
                 <Flex justifyContent="end">
