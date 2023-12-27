@@ -20,6 +20,11 @@ interface BlockBurnt {
      * Nearest block number, equal to or smaller than the block_height
      */
     nearest_block_number: number
+
+    /**
+     * Burnt KLAY amount on KIP103 hard fork
+     */
+    kip103_burnt: string
 }
 
 export interface IFinderStatus {
@@ -46,6 +51,7 @@ export const finderStatusState = atom<IFinderStatus>({
             accumulate_burnt_klay: '0',
             accumulate_burnt: '0',
             nearest_block_number: 0,
+            kip103_burnt: '0',
         },
     },
 })

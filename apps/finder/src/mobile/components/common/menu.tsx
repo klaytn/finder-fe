@@ -124,7 +124,7 @@ const Status = () => {
     return (
         <StatusContainer direction="column">
             <Text typo={typos.suit['12.16_400']} color={colorSet.white}>
-                Chain status is{' '}
+                Finder status is{' '}
             </Text>
             <StatusRow direction="row">
                 <Text typo={typos.suit['12.16_900']} color={colorSet.text}>
