@@ -37,7 +37,7 @@ const HomeStatus = () => {
 
     return (
         <Container direction="column" round={20} backgroundColor={colorSet.background} justifyContent="stretch">
-            <Row icon={FaceSmileyIcon} title="Chain Status">
+            <Row icon={FaceSmileyIcon} title="Finder Status">
                 <ChainStatus />
             </Row>
             <Row icon={CubeIcon} title="Block Height">

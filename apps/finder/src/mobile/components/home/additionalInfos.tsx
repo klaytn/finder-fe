@@ -43,7 +43,7 @@ const Container = styled(Flex)``
 const BurntInfo = () => {
     const { keyCurrency } = useResources()
     const {
-        block_burnt: { accumulate_burnt_fees, accumulate_burnt_klay },
+        block_burnt: { accumulate_burnt_fees, accumulate_burnt_klay, kip103_burnt },
     } = useRecoilValue(finderStatusState)
     const { histories } = useBurntByGasFeeHistory()
 
@@ -75,6 +75,16 @@ const BurntInfo = () => {
                         <UnitText>{keyCurrency.unit}</UnitText>
                     </>
                 }
+            />
+            <HomeInfoRow
+                title="by KIP-103"
+                text={
+                    <>
+                        <EllipsisNumber value={klay(kip103_burnt, undefined, 3)} noEllipsis />
+                        <UnitText>{keyCurrency.unit}</UnitText>
+                    </>
+                }
+                marginBottom={0}
             />
         </>
     )

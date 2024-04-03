@@ -16,7 +16,7 @@ const ChainStatus = () => {
 
     return (
         <>
-            <DescSpan>Chain status is</DescSpan>
+            <DescSpan>Finder status is</DescSpan>
             <StatusSpan color={status.color}>
                 {status.status} {status.icon}
             </StatusSpan>

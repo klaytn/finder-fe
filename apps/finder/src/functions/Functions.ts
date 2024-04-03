@@ -162,11 +162,11 @@ export const dispChainDiff = (diff: number) => {
 }
 
 export const calculateChainStatus = (diff: number) => {
-    if (diff >= 10000 || isNaN(diff)) {
+    if (diff >= 20000 || isNaN(diff)) {
         return { status: 'Not Healthy', color: colors.red[500], icon: '🥀' }
     }
 
-    if (diff >= 5000) {
+    if (diff >= 10000) {
         return { status: 'Not Good', color: colors.yellow[500], icon: '🍂' }
     }
 
